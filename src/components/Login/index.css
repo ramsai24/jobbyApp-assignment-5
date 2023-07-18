@@ -87,3 +87,8 @@
   color: #ffffff;
   border: none;
 }
+
+.error-msg {
+  color: #ff0b37;
+  font-size: 12px;
+}
