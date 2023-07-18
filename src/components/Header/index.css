@@ -1,0 +1,18 @@
+.background-container {
+  background-color: #272727;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.website-logo {
+  width: 120px;
+}
