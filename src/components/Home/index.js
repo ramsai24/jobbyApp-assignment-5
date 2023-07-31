@@ -1,8 +1,8 @@
 import Header from '../Header'
 import './index.css'
 
-const Home = () => {
-  const redirectToJobsRoute = props => {
+const Home = props => {
+  const redirectToJobsRoute = () => {
     const {history} = props
     console.log(history)
     history.replace('/Jobs')
