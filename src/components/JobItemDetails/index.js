@@ -2,7 +2,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 
 import Header from '../Header'
-import JobDetails from '../JobDetails'
+import JobDetail from '../JobDetails'
 import SimilarJobs from '../SimilarJobs'
 
 import './index.css'
@@ -58,7 +58,7 @@ class JobItemDetails extends Component {
     const {jobDetails, similarJobs} = updatedData
     console.log(similarJobs)
 
-    if (!response.ok) {
+    if (response.ok) {
       this.setState({jobDetails, similarJobs, status: 'SUCCESS'})
     } else {
       this.setState({status: 'FAILURE'})
@@ -69,19 +69,14 @@ class JobItemDetails extends Component {
 
   render() {
     const {jobDetails, similarJobs, status} = this.state
+    console.log(jobDetails, similarJobs, status)
+
     return (
       <div className="job-item-details-bg-container">
         <Header />
-        <JobDetails
-          jobDetails={jobDetails}
-          status={status}
-          retry={this.retry}
-        />
-        <SimilarJobs
-          similarJobDetails={similarJobs}
-          status={status}
-          retry={this.retry}
-        />
+        {/* <JobDetail job={jobDetails} status={status} retry={this.retry} /> */}
+
+        <SimilarJobs similarJobDetails={similarJobs} status={status} />
       </div>
     )
   }

@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom'
 import {AiFillStar} from 'react-icons/ai'
+import {FaMapMarkerAlt} from 'react-icons/fa'
 import {BsFillBriefcaseFill} from 'react-icons/bs'
 // import {HiMapPin} from 'react-icons/hi'
 import './index.css'
@@ -34,7 +35,7 @@ const JobItem = props => {
           </div>
           <div className="location-employmentType-package-container">
             <p>
-              <BsFillBriefcaseFill />
+              <FaMapMarkerAlt />
               {location} <BsFillBriefcaseFill />
               {employmentType}
             </p>

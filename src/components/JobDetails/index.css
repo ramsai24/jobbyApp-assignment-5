@@ -1,0 +1,24 @@
+.job-item-container {
+  margin: 30px;
+  color: #ffffff;
+  background-color: #272727;
+  padding: 20px;
+}
+.visit-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid yellow;
+}
+
+.skill-items-container {
+  display: flex;
+}
+
+/* .each-skill-container {
+  border: 1px solid magenta;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
