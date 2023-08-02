@@ -2,6 +2,8 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 
 import Header from '../Header'
+import Profile from '../Profile'
+import JobsContainer from '../JobsContainer'
 
 import './index.css'
 
@@ -20,7 +22,7 @@ class Jobs extends Component {
       jobsList: [],
       profile: [],
       status: 'INITIAL',
-      checkValue: '',
+      salaryRange: '',
       employmentTypeList: [],
     }
   }
@@ -32,7 +34,14 @@ class Jobs extends Component {
 
   jobsData = async () => {
     this.setState({status: 'LOADING'})
-    const url = 'https://apis.ccbp.in/jobs'
+    const {salaryRange, employmentTypeList} = this.state
+    console.log(salaryRange, employmentTypeList)
+
+    const joinEmpLst = employmentTypeList.join(',')
+    console.log(joinEmpLst)
+    // const url = 'https://apis.ccbp.in/jobs'
+    const url = `https://apis.ccbp.in/jobs?employment_type=${joinEmpLst}&minimum_package=${salaryRange}&search=${''}`
+    console.log(url)
     const options = {
       method: 'GET',
       headers: {
@@ -92,36 +101,53 @@ class Jobs extends Component {
   }
 
   check = event => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     const type = event.target.value
     const {employmentTypeList} = this.state
 
     if (employmentTypeList.includes(type)) {
       const updateList = employmentTypeList.filter(each => each !== type)
-      this.setState({employmentTypeList: updateList})
+      this.setState({employmentTypeList: updateList}, this.jobsData)
     } else {
-      this.setState(prev => ({
-        employmentTypeList: [...prev.employmentTypeList, type],
-      }))
+      this.setState(
+        prev => ({
+          employmentTypeList: [...prev.employmentTypeList, type],
+        }),
+        this.jobsData,
+      )
     }
   }
+
+  salaryCheck = event => {
+    console.log(event.target.value)
+    this.setState({salaryRange: event.target.value}, this.jobsData)
+  }
+
+  retryCall = () => this.getProfile()
 
   render() {
     const {profile, jobsList, status, employmentTypeList} = this.state
     const {data} = this.props
     const {employmentTypesList, salaryRangesList} = data
-    console.log(profile, jobsList, status)
-    console.log(`employmentTypeList :${employmentTypeList}`)
-    console.log(employmentTypeList)
+    // console.log(profile, jobsList, status)
+    // console.log(`employmentTypeList :${employmentTypeList}`)
+    // console.log(employmentTypeList)
+    // console.log(jobsList)
 
     return (
       <div className="jobs-bg-container">
         <Header />
         <div>
-          <div>
-            {/* {this.profilerender()} */}
-            <br />
+          <div className="left-side-Menu">
+            <div className="profile-container">
+              <Profile
+                data={profile}
+                status={status}
+                onretry={this.retryCall}
+              />
+            </div>
             <h1>Type of Employment</h1>
+            <hr />
             <ul>
               {employmentTypesList.map(each => (
                 <li key={each.employmentTypeId}>
@@ -135,6 +161,32 @@ class Jobs extends Component {
                 </li>
               ))}
             </ul>
+            <hr />
+            <ul>
+              {salaryRangesList.map(each => (
+                <li key={each.employmentTypeId}>
+                  <input
+                    id="salarylabel"
+                    value={each.salaryRangeId}
+                    type="radio"
+                    onClick={this.salaryCheck}
+                    name="salaryRange"
+                  />
+                  <label htmlFor="salarylabel">{each.label}</label>
+                </li>
+              ))}
+            </ul>
+            {/* <ul>
+              {jobsList.map(each => (
+                <li key={each.id}>{each.packagePerAnnum}</li>
+              ))}
+            </ul> */}
+          </div>
+          <div>
+            <div>
+              <input type="search" />
+            </div>
+            <JobsContainer />
           </div>
         </div>
       </div>

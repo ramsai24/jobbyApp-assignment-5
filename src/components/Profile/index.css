@@ -1,0 +1,17 @@
+.profile-bg-container {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
+  background-size: cover;
+  width: 300px;
+  min-height: 200px;
+  padding: 12px;
+}
+
+.profile-heading {
+  font-weight: 500;
+  color: #6366f1;
+}
+
+.profile-para {
+  color: #475569;
+  font-weight: 500;
+}

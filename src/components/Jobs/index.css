@@ -3,3 +3,18 @@
   min-height: 100vh;
   color: #ffffff;
 }
+
+.left-side-Menu {
+  padding: 12px;
+  width: 320px;
+  border: 1px solid yellowgreen;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  border: 1px solid red;
+}
