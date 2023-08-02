@@ -1,11 +1,15 @@
+import {withRouter} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import JobItem from '../Job Item'
 
 import './index.css'
+import FailureView from '../FailureView'
 
 const JobsContainer = props => {
+  //   console.log(props)
   const {jobsData, status, onretry} = props
-  console.log(jobsData, status)
+
+  //   console.log(jobsData, status)
   const renderSuccessJobsDataView = () => (
     <ul className="jobs-container">
       {jobsData.map(eachJob => (
@@ -14,13 +18,14 @@ const JobsContainer = props => {
     </ul>
   )
 
-  const onRetry = () => onretry()
+  //   const onRetry = () => onretry()
   const renderFailureView = () => (
-    <div>
-      <button type="button" onClick={onRetry}>
-        Retry
-      </button>
-    </div>
+    <FailureView jobDataFun={onretry} />
+    // <div>
+    //   <button type="button" onClick={onRetry}>
+    //     Retry
+    //   </button>
+    // </div>
   )
   const renderLoadingView = () => (
     <div className="loader-container" data-testid="loader">
@@ -28,9 +33,22 @@ const JobsContainer = props => {
     </div>
   )
 
+  const renderNoJobsView = () => (
+    <div>
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
+        alt="no jobs"
+      />
+      <h1>No Jobs Found</h1>
+      <p>We could not find any jobs. Try other filters</p>
+    </div>
+  )
+
   switch (status) {
     case 'SUCCESS':
-      return renderSuccessJobsDataView()
+      return jobsData.length !== 0
+        ? renderSuccessJobsDataView()
+        : renderNoJobsView()
     case 'FAILURE':
       return renderFailureView()
     default:
@@ -38,4 +56,4 @@ const JobsContainer = props => {
   }
 }
 
-export default JobsContainer
+export default withRouter(JobsContainer)

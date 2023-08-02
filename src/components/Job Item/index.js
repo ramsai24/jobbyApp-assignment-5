@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom'
 import {AiFillStar} from 'react-icons/ai'
-import {MdLocationPin} from 'react-icons/md'
+import {BsFillBriefcaseFill} from 'react-icons/bs'
+// import {HiMapPin} from 'react-icons/hi'
 import './index.css'
 
 const JobItem = props => {
@@ -31,11 +32,18 @@ const JobItem = props => {
               </p>
             </div>
           </div>
-          <div className="location-employmentType-container">
+          <div className="location-employmentType-package-container">
             <p>
-              <MdLocationPin />
-              {location}
+              <BsFillBriefcaseFill />
+              {location} <BsFillBriefcaseFill />
+              {employmentType}
             </p>
+            <p>{packagePerAnnum}</p>
+          </div>
+          <hr />
+          <div>
+            <p>Description</p>
+            <p>{jobDescription}</p>
           </div>
         </div>
       </Link>

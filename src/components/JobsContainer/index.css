@@ -2,5 +2,10 @@
   list-style-type: none;
   padding-left: 0px;
   border: 1px solid violet;
-  width: 100%;
+  flex-grow: 1;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }

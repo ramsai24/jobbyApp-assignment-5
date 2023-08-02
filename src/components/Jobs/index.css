@@ -1,10 +1,12 @@
 .jobs-bg-container {
   background-color: #000000;
+  background-size: cover;
   min-height: 100vh;
   color: #ffffff;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  padding: 10px;
 }
 
 .left-side-Menu {
@@ -23,5 +25,33 @@
 }
 
 .right-side-jobs-search-container {
-  width: 100%;
+  flex-grow: 1;
+}
+
+.input-search-container {
+  background-color: #272727;
+  padding: 0px;
+  border: 1px solid #7e858e;
+  width: 50%;
+  margin: 20px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-radius: 3px;
+}
+
+.inputEl {
+  background-color: #000000;
+  flex-grow: 1;
+  outline: none;
+  border: none;
+  margin: 0px;
+}
+
+.search-icon {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 12px;
 }

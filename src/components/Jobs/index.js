@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import {BsSearch} from 'react-icons/bs'
 
 import Header from '../Header'
 import Profile from '../Profile'
@@ -24,6 +25,7 @@ class Jobs extends Component {
       status: 'INITIAL',
       salaryRange: '',
       employmentTypeList: [],
+      search: '',
     }
   }
 
@@ -34,13 +36,13 @@ class Jobs extends Component {
 
   jobsData = async () => {
     this.setState({status: 'LOADING'})
-    const {salaryRange, employmentTypeList} = this.state
-    console.log(salaryRange, employmentTypeList)
+    const {salaryRange, employmentTypeList, search} = this.state
+    // console.log(salaryRange, employmentTypeList)
 
     const joinEmpLst = employmentTypeList.join(',')
     // console.log(joinEmpLst)
     // const url = 'https://apis.ccbp.in/jobs'
-    const url = `https://apis.ccbp.in/jobs?employment_type=${joinEmpLst}&minimum_package=${salaryRange}&search=${''}`
+    const url = `https://apis.ccbp.in/jobs?employment_type=${joinEmpLst}&minimum_package=${salaryRange}&search=${search}`
     // console.log(url)
     const options = {
       method: 'GET',
@@ -128,6 +130,12 @@ class Jobs extends Component {
     this.jobsData()
   }
 
+  search = event => this.setState({search: event.target.value})
+
+  pressSearch = () => {
+    this.jobsData()
+  }
+
   render() {
     const {profile, jobsList, status} = this.state
     const {data} = this.props
@@ -186,8 +194,14 @@ class Jobs extends Component {
             </ul> */}
           </div>
           <div className="right-side-jobs-search-container">
-            <div>
-              <input type="search" />
+            <div className="input-search-container">
+              <input
+                onChange={this.search}
+                type="search"
+                className="inputEl"
+                placeholder="Search"
+              />
+              <BsSearch className="search-icon" onClick={this.pressSearch} />
             </div>
             <JobsContainer
               jobsData={jobsList}

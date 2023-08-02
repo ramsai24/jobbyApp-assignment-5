@@ -1,5 +1,14 @@
+.job-box {
+  background-color: #272727;
+  color: #ffffff;
+  margin: 12px;
+  padding: 12px;
+}
 .company-logo-title-rating-container {
   display: flex;
-  background-color: #272727;
-  margin: 12px;
+}
+
+.location-employmentType-package-container {
+  display: flex;
+  justify-content: space-between;
 }
