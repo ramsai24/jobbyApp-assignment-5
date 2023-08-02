@@ -4,7 +4,7 @@ import './index.css'
 const Home = props => {
   const redirectToJobsRoute = () => {
     const {history} = props
-    console.log(history)
+    // console.log(history)
     history.replace('/Jobs')
   }
 
@@ -18,7 +18,11 @@ const Home = props => {
           reviews. Find the job that fits your abilities and potential.
         </p>
       </div>
-      <button type="button" onClick={redirectToJobsRoute}>
+      <button
+        className="find-jobs-btn"
+        type="button"
+        onClick={redirectToJobsRoute}
+      >
         Find Jobs
       </button>
     </div>

@@ -30,3 +30,14 @@
     font-size: 35px;
   }
 }
+
+.find-jobs-btn {
+  background-color: #6366f1;
+  color: #ffffff;
+  width: 100px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin: 20px;
+  height: 40px;
+  outline: none;
+}
