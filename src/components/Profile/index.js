@@ -3,7 +3,7 @@ import './index.css'
 
 const Profile = props => {
   const {data, status, onretry} = props
-  console.log(data, status)
+  //   console.log(data, status)
 
   const renderSuccessProfileView = () => {
     const {name, profileImageUrl, shortBio} = data

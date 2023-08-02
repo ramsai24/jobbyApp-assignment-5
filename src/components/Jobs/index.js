@@ -38,10 +38,10 @@ class Jobs extends Component {
     console.log(salaryRange, employmentTypeList)
 
     const joinEmpLst = employmentTypeList.join(',')
-    console.log(joinEmpLst)
+    // console.log(joinEmpLst)
     // const url = 'https://apis.ccbp.in/jobs'
     const url = `https://apis.ccbp.in/jobs?employment_type=${joinEmpLst}&minimum_package=${salaryRange}&search=${''}`
-    console.log(url)
+    // console.log(url)
     const options = {
       method: 'GET',
       headers: {
@@ -119,14 +119,17 @@ class Jobs extends Component {
   }
 
   salaryCheck = event => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     this.setState({salaryRange: event.target.value}, this.jobsData)
   }
 
-  retryCall = () => this.getProfile()
+  retryCall = () => {
+    this.getProfile()
+    this.jobsData()
+  }
 
   render() {
-    const {profile, jobsList, status, employmentTypeList} = this.state
+    const {profile, jobsList, status} = this.state
     const {data} = this.props
     const {employmentTypesList, salaryRangesList} = data
     // console.log(profile, jobsList, status)
@@ -135,9 +138,9 @@ class Jobs extends Component {
     // console.log(jobsList)
 
     return (
-      <div className="jobs-bg-container">
+      <div>
         <Header />
-        <div>
+        <div className="jobs-bg-container">
           <div className="left-side-Menu">
             <div className="profile-container">
               <Profile
@@ -182,11 +185,15 @@ class Jobs extends Component {
               ))}
             </ul> */}
           </div>
-          <div>
+          <div className="right-side-jobs-search-container">
             <div>
               <input type="search" />
             </div>
-            <JobsContainer />
+            <JobsContainer
+              jobsData={jobsList}
+              status={status}
+              onretry={this.retryCall}
+            />
           </div>
         </div>
       </div>
