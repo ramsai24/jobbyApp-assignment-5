@@ -10,7 +10,7 @@ const LifeAtCompany = props => {
   })
 
   const lifeAtCompanyCamel = convertSnakeToCamel(lifeAtCompany)
-  console.log(lifeAtCompanyCamel)
+  //   console.log(lifeAtCompanyCamel)
   const {description, imageUrl} = lifeAtCompanyCamel
 
   return (

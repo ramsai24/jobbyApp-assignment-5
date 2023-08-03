@@ -10,7 +10,7 @@ import './index.css'
 
 const JobDetail = props => {
   const {job, status, retry} = props
-  console.log(job, status)
+  //   console.log(job, status)
 
   const newjobDetails = {
     companyLogoUrl: job.company_logo_url,

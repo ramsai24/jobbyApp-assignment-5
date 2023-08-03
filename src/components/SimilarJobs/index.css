@@ -1,3 +1,13 @@
-.color {
-  color: wheat;
+.similar-jobs-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.similar-job-container {
+  background-color: #272727;
+  color: aliceblue;
+  margin: 18px;
+  padding: 18px;
+  width: 400px;
 }
