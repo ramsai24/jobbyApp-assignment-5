@@ -4,6 +4,8 @@ import {FaMapMarkerAlt} from 'react-icons/fa'
 import {FiExternalLink} from 'react-icons/fi'
 import {BsFillBriefcaseFill} from 'react-icons/bs'
 import FailureView from '../FailureView'
+import Skills from '../skills'
+import LifeAtCompany from '../LifeAtCompany'
 import './index.css'
 
 const JobDetail = props => {
@@ -34,7 +36,7 @@ const JobDetail = props => {
     employmentType,
     // id,
     jobDescription,
-    // lifeAtCompany,
+    lifeAtCompany,
     location,
     packagePerAnnum,
     rating,
@@ -59,6 +61,13 @@ const JobDetail = props => {
   //   })
 
   //   console.log(b)
+  //   const convertSnakeToCamel = args => ({
+  //     description: args.description,
+  //     imageUrl: args.image_url,
+  //   })
+
+  //   const lifeAtCompanyCamel = convertSnakeToCamel(lifeAtCompany)
+  //   console.log(lifeAtCompanyCamel)
 
   const renderSuccessView = () => (
     <div className="job-details-container">
@@ -84,24 +93,23 @@ const JobDetail = props => {
       <div>
         <div className="visit-container">
           <h1>Description</h1>
-          <a href={companyWebsiteUrl}>
+          <a className="link" href={companyWebsiteUrl}>
             Visit
-            <FiExternalLink />
+            <FiExternalLink className="external-link" />
           </a>
         </div>
 
         <p>{jobDescription}</p>
       </div>
-      {/* <ul className="job-item-details-skills-container">
-        {b.map(eachSkill => (
-          <li className="each-skill" key={eachSkill.name}>
-            <img src={eachSkill.imageUrl} alt={eachSkill.name} />
-            <p>{eachSkill.name}</p>
-          </li>
-        ))}
-      </ul> */}
+      <Skills skills={skills} />
+      <div>
+        <h1>Life at Company</h1>
+        <LifeAtCompany lifeAtCompany={lifeAtCompany} />
+      </div>
     </div>
   )
+
+  const renderFailureView = () => <FailureView jobDataFun={retry} />
 
   const renderLoadingView = () => (
     <div className="loader-container" data-testid="loader">
@@ -112,6 +120,8 @@ const JobDetail = props => {
   switch (status) {
     case 'SUCCESS':
       return renderSuccessView()
+    case 'FAILURE':
+      return renderFailureView()
     default:
       return renderLoadingView()
   }

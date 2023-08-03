@@ -76,7 +76,7 @@ class JobItemDetails extends Component {
         <Header />
         <JobDetail job={jobDetails} status={status} retry={this.retry} />
 
-        {/* <SimilarJobs similarJobDetails={similarJobs} status={status} /> */}
+        <SimilarJobs similarJobDetails={similarJobs} status={status} />
       </div>
     )
   }
