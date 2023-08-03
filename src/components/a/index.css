@@ -1,0 +1,15 @@
+.job-details-container {
+  color: wheat;
+}
+
+.job-item-details-skills-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.each-skill {
+  border: 1px solid yellow;
+  width: 300px;
+  padding: 12px;
+  margin: 12px;
+}

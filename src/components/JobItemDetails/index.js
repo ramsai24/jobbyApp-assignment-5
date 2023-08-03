@@ -47,16 +47,16 @@ class JobItemDetails extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
 
     const updatedData = {
       jobDetails: data.job_details,
       similarJobs: data.similar_jobs,
     }
 
-    console.log(updatedData)
+    // console.log(updatedData)
     const {jobDetails, similarJobs} = updatedData
-    console.log(similarJobs)
+    // console.log(similarJobs)
 
     if (response.ok) {
       this.setState({jobDetails, similarJobs, status: 'SUCCESS'})
@@ -69,14 +69,14 @@ class JobItemDetails extends Component {
 
   render() {
     const {jobDetails, similarJobs, status} = this.state
-    console.log(jobDetails, similarJobs, status)
+    // console.log(jobDetails, similarJobs, status)
 
     return (
       <div className="job-item-details-bg-container">
         <Header />
-        {/* <JobDetail job={jobDetails} status={status} retry={this.retry} /> */}
+        <JobDetail job={jobDetails} status={status} retry={this.retry} />
 
-        <SimilarJobs similarJobDetails={similarJobs} status={status} />
+        {/* <SimilarJobs similarJobDetails={similarJobs} status={status} /> */}
       </div>
     )
   }
