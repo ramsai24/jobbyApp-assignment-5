@@ -36,7 +36,7 @@ const SimilarJobs = props => {
           <li className="similar-job-container" key={each.id}>
             {each.id}
             <div className="company-logo-title-rating-container">
-              <img src={companyLogoUrl} alt="job details company logo" />
+              <img src={companyLogoUrl} alt="similar job company logo" />
               <div className="title-rating">
                 <h1>{title}</h1>
                 <p>

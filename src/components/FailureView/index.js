@@ -14,7 +14,7 @@ const FailureView = props => {
         alt="failure view"
       />
       <h1>Oops! Something Went Wrong</h1>
-      <p>We Cannot seen to find the page you are looking for.</p>
+      <p>We cannot seem to find the page you are looking for</p>
       <button type="button" onClick={retry}>
         Retry
       </button>

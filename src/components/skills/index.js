@@ -10,7 +10,7 @@ const Skills = props => {
 
   return (
     <div>
-      {' '}
+      <h1>Skills</h1>
       <ul className="job-item-details-skills-container">
         {newSkillsList.map(eachSkill => (
           <li className="each-skill" key={eachSkill.name}>
