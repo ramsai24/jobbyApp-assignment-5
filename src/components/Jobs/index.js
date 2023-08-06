@@ -10,43 +10,43 @@ import './index.css'
 
 const jwtToken = Cookies.get('jwt_token')
 
-const employmentTypesList = [
-  {
-    label: 'Full Time',
-    employmentTypeId: 'FULLTIME',
-  },
-  {
-    label: 'Part Time',
-    employmentTypeId: 'PARTTIME',
-  },
-  {
-    label: 'Freelance',
-    employmentTypeId: 'FREELANCE',
-  },
-  {
-    label: 'Internship',
-    employmentTypeId: 'INTERNSHIP',
-  },
-]
+// const employmentTypesList = [
+//   {
+//     label: 'Full Time',
+//     employmentTypeId: 'FULLTIME',
+//   },
+//   {
+//     label: 'Part Time',
+//     employmentTypeId: 'PARTTIME',
+//   },
+//   {
+//     label: 'Freelance',
+//     employmentTypeId: 'FREELANCE',
+//   },
+//   {
+//     label: 'Internship',
+//     employmentTypeId: 'INTERNSHIP',
+//   },
+// ]
 
-const salaryRangesList = [
-  {
-    salaryRangeId: '1000000',
-    label: '10 LPA and above',
-  },
-  {
-    salaryRangeId: '2000000',
-    label: '20 LPA and above',
-  },
-  {
-    salaryRangeId: '3000000',
-    label: '30 LPA and above',
-  },
-  {
-    salaryRangeId: '4000000',
-    label: '40 LPA and above',
-  },
-]
+// const salaryRangesList = [
+//   {
+//     salaryRangeId: '1000000',
+//     label: '10 LPA and above',
+//   },
+//   {
+//     salaryRangeId: '2000000',
+//     label: '20 LPA and above',
+//   },
+//   {
+//     salaryRangeId: '3000000',
+//     label: '30 LPA and above',
+//   },
+//   {
+//     salaryRangeId: '4000000',
+//     label: '40 LPA and above',
+//   },
+// ]
 
 class Jobs extends Component {
   constructor(props) {
@@ -177,10 +177,10 @@ class Jobs extends Component {
 
   render() {
     const {profile, jobsList, status, profileStatus} = this.state
-    // const {data} = this.props
-    // console.log(data)
-    // const {employmentTypesList, salaryRangesList} = data
-    // console.log(profile, jobsList, status)
+    const {data} = this.props
+    console.log(data)
+    const {employmentTypesList, salaryRangesList} = data
+    console.log(profile, jobsList, status)
     // console.log(`employmentTypeList :${employmentTypeList}`)
     // console.log(employmentTypeList)
     // console.log(jobsList)
@@ -204,12 +204,12 @@ class Jobs extends Component {
               {employmentTypesList.map(each => (
                 <li key={each.employmentTypeId}>
                   <input
-                    id="label"
+                    id={each.employmentTypeId}
                     value={each.employmentTypeId}
                     type="checkbox"
                     onClick={this.check}
                   />
-                  <label htmlFor="label">{each.label}</label>
+                  <label htmlFor={each.employmentTypeId}>{each.label}</label>
                 </li>
               ))}
             </ul>
@@ -219,13 +219,13 @@ class Jobs extends Component {
               {salaryRangesList.map(each => (
                 <li key={each.salaryRangeId}>
                   <input
-                    id="salarylabel"
+                    id={each.salaryRangeId}
                     value={each.salaryRangeId}
                     type="radio"
                     onClick={this.salaryCheck}
                     name="salaryRange"
                   />
-                  <label htmlFor="salarylabel">{each.label}</label>
+                  <label htmlFor={each.salaryRangeId}>{each.label}</label>
                 </li>
               ))}
             </ul>
