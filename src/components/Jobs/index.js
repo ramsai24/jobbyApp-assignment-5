@@ -59,9 +59,9 @@ class Jobs extends Component {
 
     this.state = {
       jobsList: [],
-      profile: [],
+
       status: 'INITIAL',
-      profileStatus: 'INITIAL',
+
       salaryRange: '',
       employmentTypeList: [],
       search: '',
@@ -69,7 +69,6 @@ class Jobs extends Component {
   }
 
   componentDidMount() {
-    this.getProfile()
     this.jobsData()
   }
 
@@ -82,7 +81,7 @@ class Jobs extends Component {
     // console.log(joinEmpLst)
     // const url = 'https://apis.ccbp.in/jobs'
     const url = `https://apis.ccbp.in/jobs?employment_type=${joinEmpLst}&minimum_package=${salaryRange}&search=${search}`
-    console.log(url)
+    // console.log(url)
     const options = {
       method: 'GET',
       headers: {
@@ -115,32 +114,6 @@ class Jobs extends Component {
     }
   }
 
-  getProfile = async () => {
-    this.setState({profileStatus: 'LOADING'})
-    const url = 'https://apis.ccbp.in/profile'
-    const option = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    }
-    const response = await fetch(url, option)
-    const data = await response.json()
-    // console.log(data.profile_details)
-
-    const updatedProfileData = {
-      name: data.profile_details.name,
-      profileImageUrl: data.profile_details.profile_image_url,
-      shortBio: data.profile_details.short_bio,
-    }
-
-    if (response.ok) {
-      this.setState({profile: updatedProfileData, profileStatus: 'SUCCESS'})
-    } else {
-      this.setState({profileStatus: 'FAILURE'})
-    }
-  }
-
   check = event => {
     // console.log(event.target.value)
     const type = event.target.value
@@ -165,7 +138,6 @@ class Jobs extends Component {
   }
 
   retryCall = () => {
-    this.getProfile()
     this.jobsData()
   }
 
@@ -176,11 +148,11 @@ class Jobs extends Component {
   }
 
   render() {
-    const {profile, jobsList, status, profileStatus} = this.state
+    const {jobsList, status} = this.state
     const {data} = this.props
-    console.log(data)
+    // console.log(data)
     const {employmentTypesList, salaryRangesList} = data
-    console.log(profile, jobsList, status)
+    // console.log(profile, jobsList, status)
     // console.log(`employmentTypeList :${employmentTypeList}`)
     // console.log(employmentTypeList)
     // console.log(jobsList)
@@ -191,11 +163,7 @@ class Jobs extends Component {
         <div className="jobs-bg-container">
           <div className="left-side-Menu">
             <div className="profile-container">
-              <Profile
-                data={profile}
-                status={profileStatus}
-                onretry={this.retryCall}
-              />
+              <Profile />
             </div>
 
             <hr />

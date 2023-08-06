@@ -9,7 +9,7 @@ const JobsContainer = props => {
   //   console.log(props)
   const {jobsData, status, onretry} = props
 
-  //   console.log(jobsData, status)
+  console.log(`jobsApi :${status}`)
   const renderSuccessJobsDataView = () => (
     <ul className="jobs-container">
       {jobsData.map(eachJob => (
@@ -19,14 +19,8 @@ const JobsContainer = props => {
   )
 
   //   const onRetry = () => onretry()
-  const renderFailureView = () => (
-    <FailureView jobDataFun={onretry} />
-    // <div>
-    //   <button type="button" onClick={onRetry}>
-    //     Retry
-    //   </button>
-    // </div>
-  )
+  const renderFailureView = () => <FailureView jobDataFun={onretry} />
+
   const renderLoadingView = () => (
     <div className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
@@ -51,6 +45,7 @@ const JobsContainer = props => {
         : renderNoJobsView()
     case 'FAILURE':
       return renderFailureView()
+
     default:
       return renderLoadingView()
   }

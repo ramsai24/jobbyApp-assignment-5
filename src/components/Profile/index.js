@@ -1,12 +1,50 @@
+import {Component} from 'react'
+import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import './index.css'
 
-const Profile = props => {
-  const {data, status, onretry} = props
-  //   console.log(data, status)
+const jwtToken = Cookies.get('jwt_token')
 
-  const renderSuccessProfileView = () => {
-    const {name, profileImageUrl, shortBio} = data
+class Profile extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {profileStatus: 'INITIAL', profile: []}
+  }
+
+  componentDidMount() {
+    this.getProfile()
+  }
+
+  getProfile = async () => {
+    this.setState({profileStatus: 'LOADING'})
+    const url = 'https://apis.ccbp.in/profile'
+    const option = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    }
+    const response = await fetch(url, option)
+    const data = await response.json()
+    // console.log(data.profile_details)
+
+    const updatedProfileData = {
+      name: data.profile_details.name,
+      profileImageUrl: data.profile_details.profile_image_url,
+      shortBio: data.profile_details.short_bio,
+    }
+
+    if (response.ok) {
+      this.setState({profile: updatedProfileData, profileStatus: 'SUCCESS'})
+    } else {
+      this.setState({profileStatus: 'FAILURE'})
+    }
+  }
+
+  renderSuccessProfileView = () => {
+    const {profile} = this.state
+    const {name, profileImageUrl, shortBio} = profile
     // console.log(name, profileImageUrl, shortBio)
     return (
       <div className="profile-bg-container">
@@ -17,27 +55,36 @@ const Profile = props => {
     )
   }
 
-  const onRetry = () => onretry()
-  const renderFailureView = () => (
-    <div>
-      <button type="button" onClick={onRetry}>
-        Retry
-      </button>
-    </div>
+  onretryProfile = () => {
+    this.getProfile()
+  }
+
+  onRetry = () => this.onretryProfile()
+
+  renderFailureView = () => (
+    <button type="button" onClick={this.onRetry}>
+      Retry
+    </button>
   )
-  const renderLoadingView = () => (
+
+  renderLoadingView = () => (
     <div className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
     </div>
   )
 
-  switch (status) {
-    case 'SUCCESS':
-      return renderSuccessProfileView()
-    case 'FAILURE':
-      return renderFailureView()
-    default:
-      return renderLoadingView()
+  render() {
+    const {profileStatus} = this.state
+    console.log(`profileApi : ${profileStatus}`)
+
+    switch (profileStatus) {
+      case 'SUCCESS':
+        return this.renderSuccessProfileView()
+      case 'FAILURE':
+        return this.renderFailureView()
+      default:
+        return this.renderLoadingView()
+    }
   }
 }
 
