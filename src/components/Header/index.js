@@ -9,7 +9,7 @@ const Header = props => {
   const onLogOut = () => {
     const {history} = props
     Cookies.remove('jwt_token')
-    history.replace('/')
+    history.replace('/login')
   }
 
   return (
@@ -29,7 +29,7 @@ const Header = props => {
             </Link>
           </li>
           <li>
-            <Link className="nav-link-item" to="/Jobs">
+            <Link className="nav-link-item" to="/jobs">
               Jobs
             </Link>
           </li>

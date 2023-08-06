@@ -10,6 +10,44 @@ import './index.css'
 
 const jwtToken = Cookies.get('jwt_token')
 
+const employmentTypesList = [
+  {
+    label: 'Full Time',
+    employmentTypeId: 'FULLTIME',
+  },
+  {
+    label: 'Part Time',
+    employmentTypeId: 'PARTTIME',
+  },
+  {
+    label: 'Freelance',
+    employmentTypeId: 'FREELANCE',
+  },
+  {
+    label: 'Internship',
+    employmentTypeId: 'INTERNSHIP',
+  },
+]
+
+const salaryRangesList = [
+  {
+    salaryRangeId: '1000000',
+    label: '10 LPA and above',
+  },
+  {
+    salaryRangeId: '2000000',
+    label: '20 LPA and above',
+  },
+  {
+    salaryRangeId: '3000000',
+    label: '30 LPA and above',
+  },
+  {
+    salaryRangeId: '4000000',
+    label: '40 LPA and above',
+  },
+]
+
 class Jobs extends Component {
   constructor(props) {
     super(props)
@@ -139,8 +177,9 @@ class Jobs extends Component {
 
   render() {
     const {profile, jobsList, status, profileStatus} = this.state
-    const {data} = this.props
-    const {employmentTypesList, salaryRangesList} = data
+    // const {data} = this.props
+    // console.log(data)
+    // const {employmentTypesList, salaryRangesList} = data
     // console.log(profile, jobsList, status)
     // console.log(`employmentTypeList :${employmentTypeList}`)
     // console.log(employmentTypeList)

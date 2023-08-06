@@ -75,7 +75,7 @@ class JobItemDetails extends Component {
       <div className="job-item-details-bg-container">
         <Header />
         <JobDetail job={jobDetails} status={status} retry={this.retry} />
-
+        <h1>Similar Jobs</h1>
         <SimilarJobs similarJobDetails={similarJobs} status={status} />
       </div>
     )
