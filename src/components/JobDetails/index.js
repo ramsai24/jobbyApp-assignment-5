@@ -95,8 +95,8 @@ const JobDetail = props => {
           <h1>Description</h1>
           <a className="link" href={companyWebsiteUrl}>
             Visit
-            <FiExternalLink className="external-link" />
           </a>
+          <FiExternalLink className="external-link" />
         </div>
 
         <p>{jobDescription}</p>

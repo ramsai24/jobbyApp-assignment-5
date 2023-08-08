@@ -29,13 +29,12 @@ class Profile extends Component {
     const data = await response.json()
     // console.log(data.profile_details)
 
-    const updatedProfileData = {
-      name: data.profile_details.name,
-      profileImageUrl: data.profile_details.profile_image_url,
-      shortBio: data.profile_details.short_bio,
-    }
-
     if (response.ok) {
+      const updatedProfileData = {
+        name: data.profile_details.name,
+        profileImageUrl: data.profile_details.profile_image_url,
+        shortBio: data.profile_details.short_bio,
+      }
       this.setState({profile: updatedProfileData, profileStatus: 'SUCCESS'})
     } else {
       this.setState({profileStatus: 'FAILURE'})

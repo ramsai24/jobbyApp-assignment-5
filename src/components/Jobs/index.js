@@ -94,20 +94,19 @@ class Jobs extends Component {
 
     const {jobs} = data
 
-    const updatedListData = jobs.map(eachJob => ({
-      id: eachJob.id,
-      companyLogoUrl: eachJob.company_logo_url,
-      employmentType: eachJob.employment_type,
-      jobDescription: eachJob.job_description,
-      location: eachJob.location,
-      rating: eachJob.rating,
-      title: eachJob.title,
-      packagePerAnnum: eachJob.package_per_annum,
-    }))
-
     // console.log(updatedListData)
 
     if (response.ok) {
+      const updatedListData = jobs.map(eachJob => ({
+        id: eachJob.id,
+        companyLogoUrl: eachJob.company_logo_url,
+        employmentType: eachJob.employment_type,
+        jobDescription: eachJob.job_description,
+        location: eachJob.location,
+        rating: eachJob.rating,
+        title: eachJob.title,
+        packagePerAnnum: eachJob.package_per_annum,
+      }))
       this.setState({jobsList: updatedListData, status: 'SUCCESS'})
     } else {
       this.setState({status: 'FAILURE'})
