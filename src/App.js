@@ -60,8 +60,8 @@ const App = () => (
       )}
     />
     <ProtectedRoute exact path="/jobs/:id" component={JobItemDetails} />
-    <Route exact to="/not-found" component={NotFound} />
-    <Redirect to="not-found" />
+    <Route exact path="/not-found" component={NotFound} />
+    <Redirect to="/not-found" />
   </Switch>
 )
 
